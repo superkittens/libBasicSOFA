@@ -17,7 +17,9 @@ Only spherical coordinates are supported in this library.  **Cartesian coordinat
 
 The following chart outlines the spherical coordinate system used in the SOFA specification.  
 ![coordinates](/readme_resources/coordinates.png)
-*From the following [paper](https://cesardsalvador.github.io/doc/salvador_2018_near_distance_hrtf_dataset.pdf) by César D. Salvador)
+
+
+*From the following [paper](https://cesardsalvador.github.io/doc/salvador_2018_near_distance_hrtf_dataset.pdf) by César D. Salvador)*
 
 
 ## Building
