@@ -13,7 +13,7 @@
 #include <catch2/catch.hpp>
 
 #define VALID_SOFA_FILEPATH "/Users/superkittens/projects/sound_prototypes/hrtf/hrtfs/nf_hrtf_sph.sofa"
-#define INVALID_SOFA_FILEPATH "/Users/superkittens/projects/sound_prototypes/hrtf/hrtfs/QU_KEMAR_Auditorium3.sofa"
+#define UNSUPPORTED_SOFA_FILEPATH "/Users/superkittens/projects/sound_prototypes/hrtf/hrtfs/QU_KEMAR_Auditorium3.sofa"
 #define IR_LOG_FILEPATH "/Users/superkittens/Desktop/test_ir.txt"
 
 #define FLOAT_PRECISION 20
@@ -146,13 +146,13 @@ TEST_CASE("Valid SOFA File Test", "[Valid SOFA Test]")
 
 
 
-TEST_CASE("Invalid SOFA File Test", "[Invalid SOFA Test]")
+TEST_CASE("Unsupported SOFA File Test", "[Unsupported SOFA Test]")
 {
     BasicSOFA::BasicSOFA sofa;
-    bool success = sofa.readSOFAFile(INVALID_SOFA_FILEPATH);
+    bool success = sofa.readSOFAFile(UNSUPPORTED_SOFA_FILEPATH);
     REQUIRE(success == false);
     
-    SECTION("Invalid SOFA Properties Check")
+    SECTION("Unsupported SOFA Properties Check")
     {
         REQUIRE(sofa.getFs() == 0);
         REQUIRE(sofa.getN() == 0);
@@ -170,7 +170,7 @@ TEST_CASE("Invalid SOFA File Test", "[Invalid SOFA Test]")
         REQUIRE(sofa.getDeltaRadius() == 0);
     }
     
-    SECTION("Attempt to Read Invalid SOFA HRIR")
+    SECTION("Attempt to Read Unsupported SOFA HRIR")
     {
         const double *ir = sofa.getHRIR(0, 0, 0, 1);
         REQUIRE(ir == nullptr);

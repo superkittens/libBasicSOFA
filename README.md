@@ -63,6 +63,9 @@ if (impulseResp == nullptr)
 libBasicSOFA uses the [Catch2](https://github.com/catchorg/Catch2) test framework.  Ensure that you have this framework installed before running the tests.
 
 
-To run the unit tests on MacOS, ensure you have a copy of the libBasicSOFA library built.  Create a new XCode project, import the source files in BasicSOFATest into your project and run.
+As the SOFA files used in unit testing are large in size, they are not included in this repository.  The supported SOFA file example can be downloaded [here](https://drive.google.com/open?id=1s0GVAG0jt4RZWZEaUOzLjPo5cirXqhLW) while the unsupported SOFA file example can be downloaded [here](https://zenodo.org/record/160749#.Xw6XMy0ZNQI).
+
+
+To run the unit tests on MacOS, ensure you have a copy of the libBasicSOFA library built.  Create a new XCode project, import the source files in BasicSOFATest into your project, specify the SOFA file paths and run.
 
 
