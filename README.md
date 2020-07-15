@@ -1,7 +1,7 @@
 # libBasicSOFA
 
 A very basic library for reading Spatially Oriented Format for Acoustics (SOFA) files, a format for storing HRTFs and/or BRIRs for binuaral audio reproduction.  
-More information on this format can be found in the [SOFA Conventions](https://www.sofaconventions.org/mediawiki/index.php/SOFA_(Spatially_Oriented_Format_for_Acoustics) website or in the AES standard document, AES69-2015.  For those looking for a more comprehensive library, check out [libMySofa](https://github.com/hoene/libmysofa)
+More information on this format can be found in the [SOFA Conventions](https://www.sofaconventions.org/mediawiki/index.php/SOFA_(Spatially_Oriented_Format_for_Acoustics)) website or in the AES standard document, AES69-2015.  For those looking for a more comprehensive library, check out [libMySofa](https://github.com/hoene/libmysofa)
 
 
 ## Library Constraints
@@ -16,7 +16,7 @@ Only spherical coordinates are supported in this library.  **Cartesian coordinat
 ## Conventions
 
 The following chart outlines the spherical coordinate system used in the SOFA specification.  
-![coordinates](https://github.com/superkittens/libBasicSOFA/readme_resources/coordintes.png)
+![coordinates](https://github.com/superkittens/libBasicSOFA/tree/master/readme_resources/coordinates.png)
 *From the following [paper](https://cesardsalvador.github.io/doc/salvador_2018_near_distance_hrtf_dataset.pdf) by César D. Salvador)
 
 
