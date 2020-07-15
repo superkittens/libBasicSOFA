@@ -50,6 +50,8 @@ namespace BasicSOFA
     public:
         
         void            HelloWorld (const char *);
+        
+                        BasicSOFA();
         bool            readSOFAFile (std::string filePath);
         const double*   getHRIR (size_t channel, double theta, double phi, double radius) const noexcept;
         

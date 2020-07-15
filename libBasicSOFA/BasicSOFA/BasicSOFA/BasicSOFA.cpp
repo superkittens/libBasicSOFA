@@ -20,6 +20,26 @@ namespace BasicSOFA
     };
     
     
+    BasicSOFA::BasicSOFA()
+    {
+        minRadius = 0;
+        maxRadius = 0;
+        dRadius = 0;
+        minPhi = 0;
+        maxPhi = 0;
+        dPhi = 0;
+        minTheta = 0;
+        maxTheta = 0;
+        dTheta = 0;
+        
+        fs = 0;
+        M = 0;
+        N = 0;
+        C = 0;
+        R = 0;
+    }
+    
+    
     bool BasicSOFA::readSOFAFile (std::string filePath)
     {
         if (filePath == "")
@@ -37,6 +57,7 @@ namespace BasicSOFA
             if (dim == 0)
             {
                 std::cout << "Invalid SOFA M parameter size" << std::endl;
+                resetSOFAData();
                 return false;
             }
             M = dim;
@@ -46,6 +67,7 @@ namespace BasicSOFA
             if (dim == 0)
             {
                 std::cout << "Invalid SOFA N parameter size" << std::endl;
+                resetSOFAData();
                 return false;
             }
             N = dim;
@@ -55,6 +77,7 @@ namespace BasicSOFA
             if (dim == 0)
             {
                 std::cout << "Invalid SOFA R parameter size" << std::endl;
+                resetSOFAData();
                 return false;
             }
             R = dim;
@@ -64,6 +87,7 @@ namespace BasicSOFA
             if (dim == 0)
             {
                 std::cout << "Invalid SOFA C parameter size" << std::endl;
+                resetSOFAData();
                 return false;
             }
             C = dim;
@@ -74,6 +98,7 @@ namespace BasicSOFA
             if (fs == 0)
             {
                 std::cout << "Invalid SOFA sampling frequency" << std::endl;
+                resetSOFAData();
                 return false;
             }
         
@@ -86,6 +111,7 @@ namespace BasicSOFA
             if (nDims != 3)
             {
                 std::cout << "Invalid number of dimensions in SOFA HRIR"  << std::endl;
+                resetSOFAData();
                 return false;
             }
             
@@ -97,6 +123,7 @@ namespace BasicSOFA
                 dims[2] != N)
             {
                 std::cout << "Invalid dimensionality in SOFA HRIR" << std::endl;
+                resetSOFAData();
                 return false;
             }
             
