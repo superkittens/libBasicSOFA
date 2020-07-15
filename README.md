@@ -59,4 +59,10 @@ if (impulseResp == nullptr)
 ```
 
 
+## Unit Testing
+libBasicSOFA uses the [Catch2](https://github.com/catchorg/Catch2) test framework.  Ensure that you have this framework installed before running the tests.
+
+
+To run the unit tests on MacOS, ensure you have a copy of the libBasicSOFA library built.  Create a new XCode project, import the source files in BasicSOFATest into your project and run.
+
 
