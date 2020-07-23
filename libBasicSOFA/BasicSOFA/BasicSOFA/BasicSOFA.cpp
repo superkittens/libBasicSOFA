@@ -310,7 +310,7 @@ namespace BasicSOFA
             
             if (dims[0] == M)
             {
-                coordinates = std::vector<double>(M);
+                coordinates = std::vector<double>(M * C);
                 dataSet.read(coordinates.data(), H5::PredType::NATIVE_DOUBLE);
             }
             
@@ -351,8 +351,12 @@ namespace BasicSOFA
     
     
     /*
-     *  Build an unordered_map that associates a radius to a SOFACoordinateMap object which stores
-     *  the locations of impulse responses for various azumuths and elevations (theta and phi)
+     *  Build tables to map a given radius, theta and phi to its corresponding impulse response
+     *
+     *  For a given radius, there is a 2D matrix that stores the location of an impulse response for a given theta and phi
+     *  Each row of the matrix corresponds to a phi value while each column corresponds to a theta value
+     *  For a given phi and theta, there are corresponding std::unordered_map objects that map to the appropriate row and column
+     *  This is done to ensure that queries to a particular impulse response is done in constant time - ie: O(1)
      */
     bool BasicSOFA::buildCoordinateMap(const std::vector<double> &coordinates)
     {
