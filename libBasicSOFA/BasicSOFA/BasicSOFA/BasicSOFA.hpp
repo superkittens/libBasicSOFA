@@ -16,6 +16,7 @@
 
 #define SOFA_STANDARD_STRING    "AES69-2015"
 #define SUPPORTED_VERSION       "1.0"
+#define LIBBASICSOFA_VERSION    "1.2"
 
 #define SOFA_HRIR_STRING        "Data.IR"
 #define SOFA_FS_STRING          "Data.SamplingRate"
@@ -71,6 +72,8 @@ namespace BasicSOFA
         double          getMaxTheta () const { return maxTheta; }
         double          getDeltaTheta () const { return dTheta; }
         
+        size_t          getMinImpulseDelay () const { return minImpulseDelay; }
+        
         void            resetSOFAData ();
         
         
@@ -83,6 +86,7 @@ namespace BasicSOFA
         std::vector<double>     getCoordinatesFromSOFAFile ();
         bool                    buildCoordinateMap (const std::vector<double> &coordinates);
         hsize_t                 getSOFASingleDimParameterSize(std::string parameter);
+        bool                    findMinImpulseDelay();
         
         
         H5::H5File  h5File;
@@ -107,6 +111,7 @@ namespace BasicSOFA
         double                              minRadius;
         double                              maxRadius;
         double                              dRadius;
+        size_t                              minImpulseDelay;
         std::vector<double>                 thetaList;
         std::vector<double>                 phiList;
         std::vector<double>                 radiusList;
@@ -115,7 +120,7 @@ namespace BasicSOFA
         std::vector<SOFACoordinateMap>      coordinateMaps;
         std::unordered_map<double, size_t>  radiusMap;
         
-        static constexpr double             epsilon = 0.01;
+        static constexpr double             epsilon = 0.1;
         
         bool                                dataLoaded;
     };

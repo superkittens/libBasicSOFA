@@ -41,7 +41,7 @@ TEST_CASE("Valid SOFA File Test", "[Valid SOFA Test]")
         REQUIRE(sofa.getDeltaTheta() == 10);
         REQUIRE(sofa.getMinRadius() == 0.1);
         REQUIRE(sofa.getMaxRadius() == 1);
-        REQUIRE(sofa.getDeltaRadius() == 0.01);
+        REQUIRE(sofa.getDeltaRadius() == 0.1);
     }
     
     SECTION("Impulse Response Check")
@@ -114,7 +114,7 @@ TEST_CASE("Valid SOFA File Test", "[Valid SOFA Test]")
             REQUIRE(sofa.getDeltaTheta() == 10);
             REQUIRE(sofa.getMinRadius() == 0.1);
             REQUIRE(sofa.getMaxRadius() == 1);
-            REQUIRE(sofa.getDeltaRadius() == 0.01);
+            REQUIRE(sofa.getDeltaRadius() == 0.1);
             
             std::ifstream inFile;
             inFile.open(IR_LOG_FILEPATH);

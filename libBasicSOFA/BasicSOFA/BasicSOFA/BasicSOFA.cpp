@@ -31,6 +31,7 @@ namespace BasicSOFA
         minTheta = 0;
         maxTheta = 0;
         dTheta = 0;
+        minImpulseDelay = 0;
         
         fs = 0;
         M = 0;
@@ -152,7 +153,7 @@ namespace BasicSOFA
             bool success = buildCoordinateMap(coordinates);
             if (!success)
             {
-                std::cout<< "Error in building coordinate map" << std::endl;
+                std::cout << "Error in building coordinate map" << std::endl;
                 resetSOFAData();
                 return false;
             }
@@ -162,7 +163,16 @@ namespace BasicSOFA
             success = calculateCoordinateStatisticalData();
             if (!success)
             {
-                std::cout<< "Delta radius, phi and theta must be consistent" << std::endl;
+                std::cout << "Delta radius, phi and theta must be consistent" << std::endl;
+                resetSOFAData();
+                return false;
+            }
+            
+            
+            success = findMinImpulseDelay();
+            if (!success)
+            {
+                std::cout << "Could not find impulse delay\n";
                 resetSOFAData();
                 return false;
             }
@@ -267,6 +277,8 @@ namespace BasicSOFA
         minTheta = 0;
         maxTheta = 0;
         dTheta = 0;
+        
+        minImpulseDelay = 0;
         
         fs = 0;
         M = 0;
@@ -404,6 +416,8 @@ namespace BasicSOFA
             auto mapRow = map.phiMap.at(phi);
             
             auto theta = round(coordinates.at(thetaIndex));
+            if (theta > 180)
+                theta -= 360;
             auto &thetaMap = map.thetaMaps.at(mapRow);
             
             //  Search if theta already exists in the coordinate map
@@ -490,7 +504,44 @@ namespace BasicSOFA
         return tempInt * epsilon;
     }
     
+    
+    /*
+     *  Go through all of the impulse responses and find where the impulse peak happens and track the index
+     *  The minimum index is the 'earliest' impulse delay
+     *  Of course, you should not simply use this value when truncating your HRIRs
+     *  The starting point of the truncated HRIR should be well less than minImpulseDelay
+     *  minImpulseDelay / 2 is a good place to start
+     */
+    bool BasicSOFA::findMinImpulseDelay()
+    {
+        if (M == 0)
+            return false;
+        
+        minImpulseDelay = N;
+        
+        for (auto i = 0; i < M; ++i)
+        {
+            double hrirMax = 0.0;
+            size_t maxLocation = 0;
+            
+            for (auto j = i * N; j < (i * N) + N; ++j)
+            {
+                if (hrirMax < abs(hrir[j]))
+                {
+                    hrirMax = abs(hrir[j]);
+                    maxLocation = j;
+                }
+            }
+            
+            if (maxLocation < minImpulseDelay)
+                minImpulseDelay = maxLocation;
+        }
+        
+        return true;
+    }
+    
 }
+
 
 
 void BasicSOFAPriv::HelloWorldPriv (const char * s)
